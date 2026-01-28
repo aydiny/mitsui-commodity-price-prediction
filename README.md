@@ -9,7 +9,7 @@ Predicting commodity prices across multiple asset classes with complex temporal 
 ## My Approach
 
 ### Models Explored
-Mainly LSTM models with 2 layers (excluding dropout layers).
+Multi-layer LSTM models with with drop-out.
 
 ### Feature Engineering
 1000+ features were generated for 106 commodity / equity underlyings, including: 
