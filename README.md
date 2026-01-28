@@ -9,7 +9,7 @@ Predicting commodity prices across multiple asset classes with complex temporal 
 ## My Approach
 
 ### Models Explored
-Multi-layer LSTM models with with drop-out.
+Multi-layer LSTM models with drop-out.
 
 ### Feature Engineering
 1000+ features were generated for 106 commodity / equity underlyings, including: 
@@ -50,7 +50,7 @@ Encountered persistent Kaggle submission errors during the competition that prev
 
 **Key Takeaways:**
 This was my first ever Kaggle competition, with valuable learning experience:
-- LSTMs can give really powerful results , successfully modelling the temporal dependencies when there are several high quality external factor time series available as features.
+- LSTMs can give really powerful results , successfully modelling the temporal dependencies when there are several high quality external factor time series available as features. I observed Sharpe ratios of over 1.5 on several validation sets.
 - Make sure to train for enough number of epochs to allow these competent LSTM models to learn. My experience shows at least 20+ epochs were needed in this case.
 - I would test the submission pipeline / inference API early to identify problems
 
