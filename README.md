@@ -19,7 +19,7 @@ Multi-layer LSTM models with drop-out.
 - Volatility measures
 
 ### Feature Selection
-- Top 300 out of the 1000 features were selected at the first stage
+- Top 300 out of the 1000 features were selected at the first stage using Mutual Information
 - Random Forest regressor implemented using the 300 features
 - Top 100 out of the 300 were selected (based in feature importance) as ultimate fetures for LSTM
 
