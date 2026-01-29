@@ -64,4 +64,9 @@ Mitsui Bussan Commodities competition data featuring:
 **Competition Link:** https://www.kaggle.com/competitions/mitsui-commodity-prediction-challenge
 
 ## Project Structure
+├── notebooks/ # Jupyter notebook with full analysis
+
+├── requirements.txt # Python dependencies
+
+└── README.md
 
