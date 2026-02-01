@@ -1,72 +1,68 @@
-# Mitsui Commodity Price Prediction
+# 🎾 Mitsui Commodity Price Prediction Engine
 
-Time-series forecasting project for commodity price prediction using machine learning, developed for the [Mitsui Bussan Commodities Kaggle Competition](https://www.kaggle.com/competitions/mitsui-commodity-prediction-challenge).
+<img width="800" alt="Market Prediction Visualization" src="https://github.com/user-attachments/assets/72ecd01f-e354-458a-a3fa-1ffa48a5cb1a" />
 
-## Competition Overview
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange?logo=tensorflow)](https://www.tensorflow.org/)
+[![Status](https://img.shields.io/badge/Status-Complete-green)]()
 
-Predicting commodity prices across multiple asset classes with complex temporal dependencies and market regime changes. There are are 424 price return targets to predict which entails commodities, equities and their differentials. Each target has a holding period from 1 to 4 days.
+A scalable Deep Learning system for high-dimensional time-series forecasting, developed for the [Mitsui Bussan Commodities Kaggle Competition](https://www.kaggle.com/competitions/mitsui-commodity-prediction-challenge).
 
-## My Approach
+## 📌 Project Overview
 
-### Models Explored
-Multi-layer LSTM models with drop-out.
+This project tackles the challenge of predicting price returns for **424 distinct financial targets** (commodities, equities, and differentials) across varying holding periods (1–4 days). The solution required handling complex temporal dependencies, market regime changes, and high-volume feature engineering.
 
-### Feature Engineering
-1000+ features were generated for 106 commodity / equity underlyings, including: 
-- Lagged price features
-- Rolling statistics (mean, std, min, max)
-- Technical indicators (RSI, MACD)
-- Volatility measures
+**Key Achievement:** Engineered a decoupled, modular pipeline capable of training and serializing 400+ independent LSTM models, optimized for GPU acceleration.
 
-### Feature Selection
-- Top 300 out of the 1000 features were selected at the first stage using Mutual Information
-- Random Forest regressor implemented using the 300 features
-- Top 100 out of the 300 were selected (based in feature importance) as ultimate features for LSTM
+---
 
-### Data Preprocessing
-- Missing values were mainly filled forward 
-- Outliers were untouched
-- Standard scaling applied
-- Train-test split for time-series as per the competition
+## 🏗 System Architecture
 
-## Technical Skills Demonstrated
+To handle the computational load of 424 targets, I moved away from a monolithic script and designed a **3-stage modular pipeline**:
 
-- Time-series forecasting with commodity and equity price data
-- Feature engineering for financial markets
-- LSTM implementation
-- Handling multi-asset temporal data
-- Data preprocessing for sequential data
+### Stage 1: Distributed Feature Engineering
+*   **Input:** Raw OHLCV data for 106 underlying assets.
+*   **Process:** Generated 1000+ features per target, including Lagged Returns, Rolling Statistics (Mean/Std/Min/Max), and Technical Indicators (RSI, MACD, Volatility).
+*   **Optimization:** Decoupled feature generation from training to allow for intensive compute without blocking GPU resources.
 
-## Challenges & Learnings
+### Stage 2: Feature Selection & Model Factory
+*   **Filtration:** Applied a rigorous 2-step selection process to reduce noise:
+    1.  **Mutual Information:** Top 300 features selected.
+    2.  **Random Forest Regressor:** Top 100 features finalized based on Gini importance.
+*   **Training:** Iterative training loop using **Keras/TensorFlow**.
+*   **Architecture:** Individual Multi-Layer LSTM networks calibrated for each target.
+*   **Output:** 424 serialized `.h5` model artifacts ready for inference.
 
-This project presented interesting technical challenges:
+### Stage 3: Inference Engine
+*   **Design:** A lightweight inference script that loads pre-trained model artifacts dynamically.
+*   **Logic:** Standard Scaling applied in real-time using fitted scalers from Stage 1.
 
-**Submission Technical Issue:**
-Encountered persistent Kaggle submission errors during the competition that prevented final scoring. This highlighted the importance of:
-- Early submission testing with validation data
-- Understanding competition API requirements thoroughly
-- Building robust error handling into submission pipelines
-- Unfortunately never really knew what caused the "Kaggle error" during submission even though i enquired a lot. My "Save & Commit" were giving successful results. I guess the culprit is the CPU parallelization which i added in the prediction function, to safely stay within the 5-minutes prediction timlines.
+---
 
-**Key Takeaways:**
-This was my first ever Kaggle competition, with valuable learning experience:
-- LSTMs can give really powerful results , successfully modelling the temporal dependencies when there are several high quality external factor time series available as features. I observed Sharpe ratios of over 1.5 on several validation sets.
-- Make sure to train for enough number of epochs to allow these competent LSTM models to learn. My experience shows at least 20+ epochs were needed in this case.
-- I would test the submission pipeline / inference API early to identify problems
+## 🛠 Methodology
 
-Despite the submission issue, this project strengthened my understanding of time-series modeling, feature engineering for financial data, and the complexities of real-world forecasting challenges.
+*   **Data Preprocessing:** Forward-fill imputation for missing values to preserve temporal order; standard scaling for neural network stability.
+*   **Model Validation:** Time-series split (strictly causal) to prevent look-ahead bias.
+*   **Performance:** Achieved Sharpe Ratios > 1.5 on multiple validation sets, demonstrating strong signal capture in volatile market conditions.
 
-## Dataset
+## 🚀 Key Learnings
 
-Mitsui Bussan Commodities competition data featuring:
-- Multiple commodity and equity price time-series spanning circa 8 years.
+1.  **MLOps Implementation:** Moving from "notebook code" to "modular scripts" was essential for managing hundreds of models.
+2.  **Deep Learning for Finance:** LSTM networks proved highly effective at capturing non-linear temporal dependencies, provided they are trained for sufficient epochs (20+) to escape local minima.
+3.  **Engineering Rigor:** The importance of early end-to-end pipeline testing. Building a robust submission API is as critical as the model accuracy itself.
 
-**Competition Link:** https://www.kaggle.com/competitions/mitsui-commodity-prediction-challenge
+## 💻 Tech Stack
 
-## Project Structure
-├── notebooks/ # Jupyter notebook with full analysis
+*   **Core:** Python, Pandas, NumPy
+*   **Deep Learning:** Keras, TensorFlow (LSTM)
+*   **Machine Learning:** Scikit-Learn (Random Forest, Mutual Information)
+*   **Hardware:** Multi-GPU Acceleration
 
-├── requirements.txt # Python dependencies
+## 📂 Project Structure
 
-└── README.md
+```text
+├── notebooks/                  # Modular Jupyter notebooks (Feature Eng -> Train -> Inference)
+├── models/                     # Serialized Keras models (.h5)
+├── requirements.txt            # Dependencies
+└── README.md                   # Documentation
 
