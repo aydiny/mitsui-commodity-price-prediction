@@ -31,7 +31,7 @@ To handle the computational load of 424 targets, I moved away from a monolithic 
     2.  **Random Forest Regressor:** Top 100 features finalized based on Gini importance.
 *   **Training:** Iterative training loop using **Keras/TensorFlow**.
 *   **Architecture:** Individual Multi-Layer LSTM networks calibrated for each target.
-*   **Output:** 424 serialized `.h5` model artifacts ready for inference.
+*   **Output:** 424 serialized `.keras` model artifacts ready for inference.
 
 ### Stage 3: Inference Engine
 *   **Design:** A lightweight inference script that loads pre-trained model artifacts dynamically.
