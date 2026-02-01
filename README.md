@@ -1,6 +1,6 @@
 # 🎾 Mitsui Commodity Price Prediction Engine
 
-<img width="800" alt="Market Prediction Visualization" src="https://github.com/user-attachments/assets/72ecd01f-e354-458a-a3fa-1ffa48a5cb1a" />
+<img width="800"  alt="image" src="https://github.com/user-attachments/assets/b979a315-45b6-4d9d-a431-1e0805eb2f9d" />
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python)](https://www.python.org/)
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-Keras-orange?logo=tensorflow)](https://www.tensorflow.org/)
