@@ -1,4 +1,4 @@
-# 🎾 Mitsui Commodity Price Prediction Engine
+#  Mitsui Commodity Price Prediction Engine
 
 <img width="800"  alt="image" src="https://github.com/user-attachments/assets/b979a315-45b6-4d9d-a431-1e0805eb2f9d" />
 
