@@ -61,8 +61,8 @@ To handle the computational load of 424 targets, I moved away from a monolithic 
 ## 📂 Project Structure
 
 ```text
-├── notebooks/                  # Modular Jupyter notebooks (Feature Eng -> Train -> Inference)
-├── models/                     # Serialized Keras models (.h5)
+├── notebooks/                  # Modular Jupyter notebooks (Train -> Inference)
+├── models/                     # An example serialized Keras model (.keras)
 ├── requirements.txt            # Dependencies
 └── README.md                   # Documentation
 
