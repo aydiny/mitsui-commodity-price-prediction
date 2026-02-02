@@ -63,6 +63,7 @@ To handle the computational load of 424 targets, I moved away from a monolithic 
 ```text
 ├── notebooks/                  # Modular Jupyter notebooks (Train -> Inference)
 ├── models/                     # An example serialized Keras model (.keras)
+├── artifacts/                  # Included features dictionary and the scaler
 ├── requirements.txt            # Dependencies
 └── README.md                   # Documentation
 
